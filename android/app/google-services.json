@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "923851836563",
+    "project_id": "project-ced1f",
+    "storage_bucket": "project-ced1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923851836563:android:ee36691f554fef9e275166",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA7Z-YUqjKVGectZ9HzQdikPznLSclkOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
