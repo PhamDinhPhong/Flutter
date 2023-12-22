@@ -10,3 +10,14 @@ circularProgress() {
     ),
   );
 }
+
+linearProgress() {
+  return Container(
+    alignment: Alignment.center,
+    child: LinearProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(
+        foodbloodcolor,
+      ),
+    ),
+  );
+}

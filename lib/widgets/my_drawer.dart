@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:demo/authentication/login.dart';
 import 'package:demo/global/global.dart';
 import 'package:flutter/material.dart';
+import '../mainScreen/history_screen.dart';
 import '../mainScreen/home_screen.dart';
 import '../models/users.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +17,13 @@ class MyDrawer extends StatelessWidget {
     String? photoUrl = sharedPreferences.getString("photoUrl");
     return photoUrl;
   }
+
+  Future<String?> getName() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? userName = sharedPreferences.getString("name");
+    return userName;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder (
@@ -55,7 +65,7 @@ class MyDrawer extends StatelessWidget {
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return CircleAvatar(
-                                  backgroundImage: NetworkImage(sharedPreferences!.getString("photoUrl")!),
+                                  backgroundImage: NetworkImage(sharedPreferences?.getString("photoUrl")??""),
                                 );
                               } else {
                                 return Placeholder(); // Placeholder while loading or handle differently
@@ -70,11 +80,12 @@ class MyDrawer extends StatelessWidget {
 
                     Text(
                       sharedPreferences!.getString("name")!,
-                      // widget.model!.userName!,
+                      //widget.model!.userName!,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold
+                      ),
                     )
                   ],
                 )
@@ -108,11 +119,12 @@ class MyDrawer extends StatelessWidget {
 
                     ListTile(
                       leading: Icon(Icons.access_time, color: foodbloodcolor,),
-                      title: Text("History",
+                      title: Text(
+                        "History",
                         style: TextStyle(color: Colors.black,),
                       ),
                       onTap: () {
-                        //Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (c) => HistoryScreen()));
                       },
                     ),
 

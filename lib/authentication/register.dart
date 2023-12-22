@@ -1,7 +1,3 @@
-
-import 'dart:ffi';
-import 'package:firebase_storage/firebase_storage.dart' as fStorage;
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo/authentication/login.dart';
 import 'package:demo/global/global.dart';
@@ -28,24 +24,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController photoUrlController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
-
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   Future<void> formValidation() async {
     if (passwordController.text == confirmPasswordController.text) {
       if (nameController.text.isNotEmpty &&
           emailController.text.isNotEmpty &&
           confirmPasswordController.text.isNotEmpty &&
-          photoUrlController.text.isNotEmpty
-      ) {
+          photoUrlController.text.isNotEmpty) {
         showDialog(
             context: context,
             builder: (c) {
               return LoadingDialog(
                 message: "Registering Account",
               );
-            }
-        );
+            });
 
         // String fileName = DateTime.now().microsecondsSinceEpoch.toString();
         // fStorage.Reference reference = fStorage.FirebaseStorage.instance.ref().child("users").child(fileName);
@@ -71,8 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             return ErrorDialog(
               message: "Password do not match.",
             );
-          }
-      );
+          });
     }
   }
 
@@ -119,7 +112,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     await sharedPreferences!.setString("uid", currentUser.uid);
     await sharedPreferences!.setString("email", currentUser.email.toString());
     await sharedPreferences!.setString("name", nameController.text.trim());
-    await sharedPreferences!.setString("photoUrl", photoUrlController.text.trim());
+    await sharedPreferences!
+        .setString("photoUrl", photoUrlController.text.trim());
     await sharedPreferences!.setStringList("userCart", ["garbageValue"]);
   }
 
@@ -192,13 +186,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       height: 15,
                     ),
 
-                    // const Text(
-                    //   "We'll check if you have an account",
-                    //   style: TextStyle(
-                    //     fontSize: 15,
-                    //   ),
-                    // ),
-
                     SizedBox(
                       height: 10,
                     ),
@@ -231,11 +218,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         CustomTextField(
                           data: Icons.photo,
                           controller: photoUrlController,
-                          hintText: "Photo URL",
+                          hintText: "Link Avatar",
                           isObsecre: false,
                           onChanged: (value) {
                             Provider.of<RegisterFormData>(context,
-                                listen: false)
+                                    listen: false)
                                 .photoUrl = value;
                           },
                         ),
@@ -274,9 +261,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             color: Colors.green,
                           ),
                         ),
+
                         SizedBox(
                           width: 5,
                         ),
+
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -284,6 +273,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 MaterialPageRoute(
                                     builder: (c) => LoginScreen()));
                           },
+
                           child: Text(
                             "Login",
                             style: TextStyle(
@@ -295,7 +285,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     )
                   ],
-                ))
+                )
+            )
           ],
         ),
       ),
